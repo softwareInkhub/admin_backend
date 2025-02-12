@@ -31,4 +31,4 @@ jobs:
         run: zip -r lambda.zip .  -x ".git/*" -x "node_modules/*" # Include all files and directories, EXCLUDING  .git and node_modules
 
       - name: Update Lambda function code
-        run: aws lambda update-function-code --function-name admin-backend --zip-file fileb://lambda.zip # Replace with your Lambda function name
+        run: aws lambda update-function-code --function-name inkhub-backend --zip-file fileb://lambda.zip # Replace with your Lambda function name
