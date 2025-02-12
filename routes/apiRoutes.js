@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/testapi', apiTest);
 router.post('/testPinterestApi', testPinterestApi);
 router.post('/test', (req,res)=>{
-    res.send("hello")
+    res.send("hello inkhub")
 });
 
 module.exports = router;
