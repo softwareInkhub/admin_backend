@@ -62,6 +62,43 @@ app.post('/api/pinterest/token', async (req, res) => {
     }
 });
 
+app.post('/api/testPinterestApi', async (req, res) => {
+    try {
+        const { url, token } = req.body;
+  
+        if (!url) {
+            return res.status(400).json({ error: 'URL is required' });
+        }
+  
+        const apiUrl = new URL(url);
+        if (params) {
+            Object.keys(params).forEach(key => {
+                apiUrl.searchParams.append(key, params[key]);
+            });
+        }
+  
+        const response = await axios.get(apiUrl.toString(), {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+  
+        res.json(response.data);
+  
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        if (error.response) {
+            console.error('Error response data:', error.response.data);
+            console.error('Error response status:', error.response.status);
+        } else {
+            console.error('Error message:', error.message);
+        }
+        res.status(500).json({ error: 'Failed to fetch data', details: error.message });
+    }
+});
+  
+
 
 
 // Start the server
